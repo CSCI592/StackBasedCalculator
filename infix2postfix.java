@@ -1,7 +1,7 @@
 import java.util.Stack;
 
 public class infix2postfix {
-
+          // if operator
     static int precedence(char c){
         switch (c){
             case '+':
@@ -13,6 +13,7 @@ public class infix2postfix {
             case '^':
                 return 3;
         }
+        // if something else
         return -1;
     }
 
@@ -29,6 +30,7 @@ public class infix2postfix {
                   result += stack.pop();
               }
               stack.push(c);
+              // if in "()"
           }else if(c==')'){
               char x = stack.pop();
               while(x!='('){
@@ -38,7 +40,7 @@ public class infix2postfix {
           }else if(c=='('){
               stack.push(c);
           }else{
-              //character is neither operator nor ( 
+              //if neither operator nor "()"
               result += c;
           }
       }
@@ -47,3 +49,4 @@ public class infix2postfix {
       }
       return result;
   }
+}
