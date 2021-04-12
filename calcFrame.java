@@ -9,6 +9,10 @@
  * @author shayimsh
  */
 public class calcFrame extends javax.swing.JFrame {
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     String exp = "";
     
     /**
@@ -228,7 +232,7 @@ public class calcFrame extends javax.swing.JFrame {
         multB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 multBActionPerformed(evt);
-            }
+            } 
         });
 
         subtB.setText("-");
