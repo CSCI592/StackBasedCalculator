@@ -6,8 +6,27 @@ static int evaluatePostfix(String exp) {
     for (int i = 0; i < exp.length(); i++) {
         char c = exp.charAt(i);
         // if number 
-        if (Character.isDigit(c))
-        stack.push(c - '0');
+        if (c==' ')
+          continue;
+        else if (Character.isDigit(c)){
+          int x = 0;
+
+          while (Character.isDigit(c)){
+            x = x * 10 + (int) (c - '0'); 
+            i++;
+            if (i<exp.length()){
+              c = exp.charAt(i);
+            }
+            else{
+              break;
+            }
+
+          }
+          i--;
+          stack.push(x);
+
+
+        }
 
         // if operator
         else {

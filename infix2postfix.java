@@ -24,29 +24,58 @@ public class infix2postfix {
       for (int i = 0; i <expression.length() ; i++) {
           char c = expression.charAt(i);
 
-          //check if char is operator
-          if(precedence(c)>0){
-              while(stack.isEmpty()==false && precedence(stack.peek())>=precedence(c)){
-                  result += stack.pop();
-              }
-              stack.push(c);
-              // if in "()"
-          }else if(c==')'){
-              char x = stack.pop();
-              while(x!='('){
-                  result += x;
-                  x = stack.pop();
-              }
-          }else if(c=='('){
-              stack.push(c);
-          }else{
-              //if neither operator nor "()"
-              result += c;
+         
+          
+
+          if (Character.isDigit(c)) {
+            int n = 0;
+    
+            
+            while (Character.isDigit(c)) {
+              n = n*10 + (int) (c - '0');
+              i++;
+              if(i < expression.length())
+                c = expression.charAt(i);
+              else
+                break;
+            }
+            i--;
+    
+            result += String.valueOf(n) + " ";
           }
-      }
-      for (int i = 0; i <=stack.size() ; i++) {
-          result += stack.pop();
-      }
-      return result;
+
+          else if (Character.isLetter(c)) 
+        result += c + " "; 
+
+        else if (c == '(')
+        stack.push(c);
+
+
+        else if (c == ')') {
+            while (!stack.isEmpty() && stack.peek() != '(')
+              result += stack.pop() + " ";
+    
+            if (!stack.isEmpty() && stack.peek() != '(')
+              return "Invalid Expression"; 
+            else
+              stack.pop();
+          }
+          else { 
+            while (!stack.isEmpty() && precedence(c) <= precedence(stack.peek())) {
+              if (stack.peek() == '(')
+                return "Invalid Expression";
+              result += stack.pop() + " ";
+            }
+            stack.push(c);
+          }
+
   }
+  while (!stack.isEmpty()) {
+    if (stack.peek() == '(')
+      return "Invalid Expression";
+    result += stack.pop();
+  }
+  
+  return result;
+}
 }
