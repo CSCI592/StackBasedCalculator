@@ -1,11 +1,13 @@
 import java.util.Stack;
 
 public class evaluate{
-static int evaluatePostfix(String exp) {
+static Object evaluatePostfix(String exp) {
     Stack<Integer> stack = new Stack<>();
     for (int i = 0; i < exp.length(); i++) {
         char c = exp.charAt(i);
         // if number 
+        if (exp == "Invalid Expression")
+          return (Integer) null;
         if (c==' ')
           continue;
         else if (Character.isDigit(c)){
