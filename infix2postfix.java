@@ -30,7 +30,7 @@ public class infix2postfix {
           if (Character.isDigit(c)) {
             int n = 0;
     
-            
+            // multi=digit number
             while (Character.isDigit(c)) {
               n = n*10 + (int) (c - '0');
               i++;
@@ -44,11 +44,15 @@ public class infix2postfix {
             result += String.valueOf(n) + " ";
           }
 
-          else if (Character.isLetter(c)) 
-        result += c + " "; 
+        
 
-        else if (c == '(')
+        else if (c == '('){
+            if (Character.isDigit(expression.charAt(i-1)))
+                stack.push('*');
         stack.push(c);
+
+
+        }
 
 
         else if (c == ')') {
@@ -60,13 +64,15 @@ public class infix2postfix {
             else
               stack.pop();
           }
-          else { 
+          else if (precedence(c) > 0) { 
             while (!stack.isEmpty() && precedence(c) <= precedence(stack.peek())) {
-              if (stack.peek() == '(')
-                return "Invalid Expression";
+              
               result += stack.pop() + " ";
             }
             stack.push(c);
+          }
+          else {
+              return "Invalid Expression";
           }
 
   }
