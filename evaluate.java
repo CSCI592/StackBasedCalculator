@@ -45,6 +45,9 @@ static Object evaluatePostfix(String exp) {
               break;
     
             case '/':
+              if (num1 == 0)
+                return (Integer) null;
+                
               stack.push(num2 / num1);
               break;
     
