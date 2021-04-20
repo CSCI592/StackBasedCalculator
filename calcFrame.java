@@ -465,7 +465,7 @@ exp += addB.getText();
        if (result == null)
        screen.setText("Invalid Expression");                      
         else 
-        screen.setText(Integer.toString((int) result)); 
+        screen.setText(Double.toString((double) result)); 
 //exp = ""; // TODO add your handling code here:
     }                                      
 

@@ -1,3 +1,5 @@
+// This class takes infix expressions as an input and returns the postfix expressions.
+
 import java.util.Stack;
 
 public class infix2postfix {
@@ -24,34 +26,48 @@ public class infix2postfix {
       for (int i = 0; i <expression.length() ; i++) {
           char c = expression.charAt(i);
 
-         
-          
-
-          if (Character.isDigit(c)) {
-            int n = 0;
+            // multi-digit number
+          if (Character.isDigit(c) || expression.charAt(i)=='.') {
+            double x = 0;
+            double y =0;
     
-            // multi=digit number
+            // handling numbers before the decimal point
             while (Character.isDigit(c)) {
-              n = n*10 + (int) (c - '0');
+              x = x*10 + (int) (c - '0');
               i++;
               if(i < expression.length())
                 c = expression.charAt(i);
               else
                 break;
             }
-            i--;
-    
-            result += String.valueOf(n) + " ";
+            // handling numbers after the decimal point
+            if (c=='.'){
+                int a= 1;
+                
+                i++;
+                c = expression.charAt(i);
+                while (Character.isDigit(c)){
+                  y =  (double) (c - '0') / (10*a) + y; 
+                  i++;
+                  a++;
+                  if (i<expression.length()){
+                    c = expression.charAt(i);
+                  }
+                  else{
+                    break;
+                  }
+              }
+           
           }
-
-        
+          i--;
+    
+          result += String.valueOf(x+y) + " ";
+        }       
 
         else if (c == '('){
             if (Character.isDigit(expression.charAt(i-1)))
                 stack.push('*');
         stack.push(c);
-
-
         }
 
 
@@ -74,8 +90,8 @@ public class infix2postfix {
           else {
               return "Invalid Expression";
           }
-
-  }
+        
+    }
   while (!stack.isEmpty()) {
     if (stack.peek() == '(')
       return "Invalid Expression";
