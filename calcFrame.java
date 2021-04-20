@@ -396,7 +396,8 @@ public class calcFrame extends javax.swing.JFrame {
     }                                      
 
     private void clearBActionPerformed(java.awt.event.ActionEvent evt) {                                       
-      exp="";
+       if (exp.length()>0)
+       exp =  exp.substring(0, exp.length()-1);
      screen.setText(exp); // TODO add your handling code here:
     }                                      
 
@@ -465,8 +466,11 @@ exp += addB.getText();
        Object result = evaluate.evaluatePostfix(infix2postfix.infixToPostFix(exp));  
        if (result == null)
        screen.setText("Invalid Expression");                      
-        else 
-        screen.setText(Double.toString((double) result)); } 
+        else {
+        screen.setText(Double.toString((double) result));
+        exp = Double.toString((double) result);
+            } 
+        }
         catch (Exception e) {
             screen.setText("Invalid Expression");
         }
