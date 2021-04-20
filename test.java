@@ -6,6 +6,11 @@ public class test{
         String exp2 = infix2postfix.infixToPostFix(exp1);
       System.out.println(exp2);
       System.out.println(evaluate.evaluatePostfix(exp2));
+
+      double a=0;
+      a= 1/0;
+
+      System.out.println(a);
   
     }
   }

@@ -461,11 +461,16 @@ exp += addB.getText();
     }                                    
 
     private void equalBActionPerformed(java.awt.event.ActionEvent evt) {       
+     try{
        Object result = evaluate.evaluatePostfix(infix2postfix.infixToPostFix(exp));  
        if (result == null)
        screen.setText("Invalid Expression");                      
         else 
-        screen.setText(Double.toString((double) result)); 
+        screen.setText(Double.toString((double) result)); } 
+        catch (Exception e) {
+            screen.setText("Invalid Expression");
+        }
+     
 //exp = ""; // TODO add your handling code here:
     }                                      
 
