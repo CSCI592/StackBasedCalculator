@@ -9,6 +9,13 @@
             "name": "Launch calcFrame",
             "request": "launch",
             "mainClass": "calcFrame",
+            "projectName": "StackBasedCalculator_745dfc81"
+        },
+        {
+            "type": "java",
+            "name": "Launch calcFrame",
+            "request": "launch",
+            "mainClass": "calcFrame",
             "projectName": "StackBasedCalculator_9b0dc2d0"
         },
         {
